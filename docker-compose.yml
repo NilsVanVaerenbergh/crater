@@ -36,18 +36,18 @@ services:
   image: nginx:1.17-alpine
   restart: unless-stopped
   volumes:
-    - ./:/var/www
-    - ./docker-compose/nginx:/etc/nginx/conf.d/
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
   networks:
-    - crater
-    - dokploy-network
+      - crater
+      - dokploy-network
   labels:
-    - traefik.enable=true
-    - traefik.docker.network=dokploy-network
-    - traefik.http.routers.crater.rule=Host(`ims.nivrox.be`)
-    - traefik.http.routers.crater.entrypoints=websecure
-    - traefik.http.routers.crater.tls=true
-    - traefik.http.services.crater.loadbalancer.server.port=80 
+      - traefik.enable=true
+      - traefik.docker.network=dokploy-network
+      - traefik.http.routers.crater.rule=Host(`ims.nivrox.be`)
+      - traefik.http.routers.crater.entrypoints=websecure
+      - traefik.http.routers.crater.tls=true
+      - traefik.http.services.crater.loadbalancer.server.port=80 
 
   cron:
     build:
