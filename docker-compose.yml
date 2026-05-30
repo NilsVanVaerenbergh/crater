@@ -46,7 +46,7 @@ services:
       - dokploy-network
     labels:
       - traefik.enable=true
-      - traefik.http.routers.crater.rule=Host(`invoices.example.com`)
+      - traefik.http.routers.crater.rule=Host(`ims.nivrox.be`)
       - traefik.http.routers.crater.entrypoints=websecure
       - traefik.http.routers.crater.tls=true
       - traefik.http.services.crater.loadbalancer.server.port=80
