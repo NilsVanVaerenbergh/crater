@@ -41,6 +41,8 @@ services:
     networks:
       - crater
       - dokploy-network
+    ports:
+      - '80:80'
     labels:
       - traefik.enable=true
       - traefik.http.routers.crater.rule=Host(`ims.nivrox.be`)
