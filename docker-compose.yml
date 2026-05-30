@@ -32,23 +32,22 @@ services:
     networks:
       - crater
 
-  nginx:
-    image: nginx:1.17-alpine
-    restart: unless-stopped
-    volumes:
-      - ./:/var/www
-      - ./docker-compose/nginx:/etc/nginx/conf.d/
-    networks:
-      - crater
-      - dokploy-network
-    ports:
-      - '80:80'
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.crater.rule=Host(`ims.nivrox.be`)
-      - traefik.http.routers.crater.entrypoints=websecure
-      - traefik.http.routers.crater.tls=true
-      - traefik.http.services.crater.loadbalancer.server.port=80
+ nginx:
+  image: nginx:1.17-alpine
+  restart: unless-stopped
+  volumes:
+    - ./:/var/www
+    - ./docker-compose/nginx:/etc/nginx/conf.d/
+  networks:
+    - crater
+    - dokploy-network
+  labels:
+    - traefik.enable=true
+    - traefik.docker.network=dokploy-network
+    - traefik.http.routers.crater.rule=Host(`ims.nivrox.be`)
+    - traefik.http.routers.crater.entrypoints=websecure
+    - traefik.http.routers.crater.tls=true
+    - traefik.http.services.crater.loadbalancer.server.port=80 
 
   cron:
     build:
